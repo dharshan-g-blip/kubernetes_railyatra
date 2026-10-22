@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'railyatra-app'
-        // TODO: set this to the kubeconfig of the Windows user Jenkins runs as.
-        // Check it with:  kubectl config view --minify   (or echo %USERPROFILE%)
-        KUBECONFIG = 'C:\\SPB_Data\\.kube\\config'    }
+    IMAGE_NAME = 'railyatra-app'
+    KUBECONFIG = 'C:\\SPB_Data\\.kube\\config'
+    JAVA_HOME  = 'C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.12.8-hotspot'
+    PATH       = "D:\\Program Files\\apache-maven-3.9.16-bin\\apache-maven-3.9.16\\bin;${JAVA_HOME}\\bin;${env.PATH}"
+    }
 
     stages {
         stage('Build and Test with Maven') {
